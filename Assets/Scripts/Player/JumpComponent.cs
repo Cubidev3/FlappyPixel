@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class JumpComponent : MonoBehaviour
 {
     [SerializeField] private float jumpImpulse = 6;
-    
+
     private Rigidbody2D rigidbody;
     private InputAction jumpAction;
 
@@ -15,7 +15,6 @@ public class JumpComponent : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         jumpAction = InputSystem.actions.FindAction("Jump");
-        wantsToJump = false;
     }
 
     private void Update()
@@ -25,8 +24,6 @@ public class JumpComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.gravityScale = GameStateManager.IsInGame() ? 1 : 0;
-
         if (wantsToJump)
         {
             rigidbody.linearVelocity = Vector2.zero;
